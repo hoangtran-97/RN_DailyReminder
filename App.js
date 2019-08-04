@@ -6,7 +6,7 @@ export default class App extends Component {
     render() {
         return (
 
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#F88F40' }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: 'green' }}>
                 <DashBoard />
             </SafeAreaView>
 

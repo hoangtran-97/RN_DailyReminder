@@ -4,12 +4,13 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
+import DashBoardScreen from '../../Screens/DashBoard';
 
 export default class DashBoard extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>component</Text>
+                <DashBoardScreen />
             </View>
         );
     }
@@ -17,6 +18,6 @@ export default class DashBoard extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1, justifyContent: 'center', alignItems: 'center'
     },
 });
