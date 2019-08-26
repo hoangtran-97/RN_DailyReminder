@@ -4,10 +4,13 @@ import {
     View,
     Text,
     StyleSheet,
+    TouchableOpacity, Animated
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 import colors from '../../constants/colors';
 import common from '../../styles/common';
+
 
 const ReminderItem = ({item, index}) => (
     <View style={styles.container}>
@@ -98,5 +101,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         flex: 1
-    }
+    },
+
 });

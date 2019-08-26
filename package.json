@@ -11,6 +11,7 @@
     "X": "react-native run-ios --simulator \"iPhone X\"",
     "IPAD": "react-native run-ios --simulator \"iPad Air\"",
     "XSMAX": "react-native run-ios --simulator \"iPhone Xs Max\"",
+    "5S": "react-native run-ios --simulator \"iPhone 5s\"",
     "ANDY": "react-native run-android"
   },
   "dependencies": {
