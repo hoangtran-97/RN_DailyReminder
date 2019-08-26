@@ -3,24 +3,46 @@ import {
     View,
     Text,
     StyleSheet,
+    StatusBar,
+    TouchableOpacity,
+    FlatList
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import ReminderItem from './ReminderItem';
+import common from '../../styles/common';
 
-const DashBoard = () => (
+const DashBoard = ({data}) => (
     <Fragment>
-        <Text> MyComponent</Text>
-        <FontAwesome5
-            style={{ color: 'red' }}
-            name="search"
-            size={13}
-        />
+        <StatusBar barStyle="light-content" />
+        <View style={common.screenHeader}>
+            <View style={common.headerBuffer}/>
+            <Text style={common.headerText}>DateTime</Text>
+            <TouchableOpacity style={common.headerBuffer}>
+                <FontAwesome5
+                    color={colors.white}
+                    name="plus"
+                    size={20}
+
+                />
+            </TouchableOpacity>
+        </View>
+        <View style={common.flatlistContainer}>
+            <FlatList
+                data={data}
+                renderItem={({item, index}) => (
+                    <ReminderItem item={item} index={index}> </ReminderItem>
+                )}
+            />
+        </View>
+
     </Fragment>
 );
 
 export default DashBoard;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
+    screenHeader: {
+
+    }
+
 });

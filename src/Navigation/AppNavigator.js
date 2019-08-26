@@ -4,7 +4,12 @@ import {
 } from 'react-navigation';
 import { SafeAreaView, BackHandler } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+// Nav Stack
 import DashBoardContainer from '../Containers/DashBoard';
+import SettingContainer from '../Containers/Setting';
+
+import colors from '../constants/colors';
 
 const TabNavigator = createBottomTabNavigator({
     Dashboard: {
@@ -13,21 +18,33 @@ const TabNavigator = createBottomTabNavigator({
             activeTintColor: '#FFFFFF',
             tabBarIcon: ({ focused }) => (
                 <FontAwesome5
-
-                    name="home"
+                    name="list-ul"
                     size={21}
                     color={focused ? '#61bc47' : '#999999'}
                 />
             )
         }
     },
-    Main: {
+    CheckList: {
         screen: DashBoardContainer,
         navigationOptions: {
             activeTintColor: '#FFFFFF',
             tabBarIcon: ({ focused }) => (
                 <FontAwesome5
-                    name="home"
+                    name="check-circle"
+                    size={21}
+                    color={focused ? '#61bc47' : '#999999'}
+                />
+            )
+        }
+    },
+    Setting: {
+        screen: SettingContainer,
+        navigationOptions: {
+            activeTintColor: '#FFFFFF',
+            tabBarIcon: ({ focused }) => (
+                <FontAwesome
+                    name="gear"
                     size={21}
                     color={focused ? '#61bc47' : '#999999'}
                 />
@@ -43,7 +60,7 @@ const TabNavigator = createBottomTabNavigator({
         showLabel: false,
         showIcon: true,
         style: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: colors.white,
             borderColor: '#d1d1d1',
             borderTopWidth: 0.3
         },
