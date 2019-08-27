@@ -7,18 +7,19 @@ import {
     TouchableOpacity, Animated
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import {connect} from 'react-redux';
 import {RectButton} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { bindActionCreators } from 'redux';
 import colors from '../../constants/colors';
 import common from '../../styles/common';
+import styles from '../../styles/reminderItemStyle';
+import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 
-
-export default class ReminderItem extends Component {
+class ReminderItem extends Component {
     constructor(props) {
         super(props);
         const {item, index} = this.props;
-        console.log('item', item);
         this.state = {
             item,
             index
@@ -32,6 +33,7 @@ export default class ReminderItem extends Component {
      });
      const pressHandler = (index) => {
          this.close();
+         this.props.actions.removeItemAction(index);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
@@ -117,64 +119,12 @@ export default class ReminderItem extends Component {
  }
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        height: 80,
-        backgroundColor: colors.backgroundGray,
-        borderRadius: 10,
-        marginVertical: 10,
-        flexDirection: 'row'
-    },
-    dayOval: {
-        width: 30,
-        height: 30,
-        borderRadius: 50,
-        backgroundColor: colors.backgroundGray,
-        borderWidth: 5,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    iconContainerInProgress: {
-        height: 80,
-        width: 80,
-        backgroundColor: colors.red,
-        borderTopStartRadius: 10,
-        borderBottomStartRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    iconContainerDone: {
-        height: 80,
-        width: 80,
-        backgroundColor: colors.green,
-        borderTopStartRadius: 10,
-        borderBottomStartRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    textBlock: {
-        flex: 1,
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        flexDirection: 'row'
-    },
-    dayBlock: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        flex: 1
-    },
-    actionText: {
-        color: 'white',
-        fontSize: 16,
-        backgroundColor: 'transparent',
-        padding: 10,
-    },
-    rightAction: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center',
-        borderRadius: 10
-    },
-
-});
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({removeItemAction}, dispatch)
+    };
+}
+export default connect(
+    null,
+    mapDispatchToProps
+)(ReminderItem);

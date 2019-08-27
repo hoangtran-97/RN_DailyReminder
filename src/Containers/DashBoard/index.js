@@ -11,9 +11,17 @@ import DashBoardScreen from '../../Screens/DashBoard';
 import colors from '../../constants/colors';
 
 class DashBoard extends Component {
-    render() {
+    constructor(props) {
+        super(props);
         const {data} = this.props;
-        console.log('data', data);
+        this.state = {
+            data
+        };
+        console.log('REDUX', this.state);
+    }
+
+    render() {
+        const {data} = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <DashBoardScreen {...this.props} data={data}/>

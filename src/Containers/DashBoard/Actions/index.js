@@ -3,17 +3,17 @@ import {
 } from './actionTypes';
 
 
-export const addItem = params => ({
+export const addItemAction = params => ({
     type: ADD_ITEM,
     params,
 });
 
-export const removeItem = params => ({
+export const removeItemAction = index => ({
     type: REMOVE_ITEM,
-    params,
+    index,
 });
 
-export const completeItem = params => ({
+export const completeItemAction = params => ({
     type: COMPLETE_ITEM,
     params,
 });

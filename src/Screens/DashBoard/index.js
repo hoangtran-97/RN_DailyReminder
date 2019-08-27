@@ -11,6 +11,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ReminderItem from './ReminderItem';
 import common from '../../styles/common';
 
+
 const DashBoard = ({data}) => (
     <Fragment>
         <StatusBar barStyle="light-content" />
@@ -32,12 +33,12 @@ const DashBoard = ({data}) => (
                 renderItem={({item, index}) => (
                     <ReminderItem item={item} index={index}> </ReminderItem>
                 )}
+                extraData={data}
             />
         </View>
 
     </Fragment>
 );
-
 export default DashBoard;
 
 const styles = StyleSheet.create({
