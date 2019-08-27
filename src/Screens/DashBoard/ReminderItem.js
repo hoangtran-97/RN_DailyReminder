@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {Component} from 'react';
 import {
     View,
     Text,
@@ -8,53 +8,138 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+import {RectButton} from 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import colors from '../../constants/colors';
 import common from '../../styles/common';
 
 
-const ReminderItem = ({item, index}) => (
-    <View style={styles.container}>
-        <View style={item.done ? styles.iconContainerDone : styles.iconContainerInProgress}>
-            <FontAwesome5
-                color={colors.white}
-                name="plus"
-                size={20}
-            />
-        </View>
-        <View style={common.flex1}>
-            <View style={styles.textBlock}>
-                <Text style={common.text}>{item.title}</Text>
-                <Text style={common.text}> - </Text>
-                <Text style={common.text}>Time</Text>
-            </View>
-            <View style={styles.dayBlock}>
-                <View style={[styles.dayOval, { borderColor: item.mon ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.text}>M</Text>
-                </View>
-                <View style={[styles.dayOval, { borderColor: item.tue ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.text}>T</Text>
-                </View>
-                <View style={[styles.dayOval, { borderColor: item.wed ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.text}>W</Text>
-                </View>
-                <View style={[styles.dayOval, { borderColor: item.thu ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.text}>T</Text>
-                </View>
-                <View style={[styles.dayOval, { borderColor: item.fri ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.text}>F</Text>
-                </View>
-                <View style={[styles.dayOval, { borderColor: item.sat ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.text}>S</Text>
-                </View>
-                <View style={[styles.dayOval, { borderColor: item.sun ? colors.green : colors.backgroundGray}]}>
-                    <Text style={common.textSunday}>S</Text>
-                </View>
-            </View>
-        </View>
-    </View>
-);
+export default class ReminderItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
 
-export default ReminderItem;
+        };
+
+        console.log();
+    }
+
+    renderLeftActions = (progress, dragX) => {
+        const trans = dragX.interpolate({
+            inputRange: [0, 50, 100, 101],
+            outputRange: [-20, 0, 0, 1],
+        });
+        return (
+            <RectButton style={styles.leftAction} onPress={this.close}>
+                <Animated.Text
+                    style={[
+                        styles.actionText,
+                        {
+                            transform: [{translateX: trans}],
+                        },
+                    ]}
+                >
+         Archive
+                </Animated.Text>
+            </RectButton>
+        );
+    };
+
+ renderRightAction = (text, color, x, progress) => {
+     const trans = progress.interpolate({
+         inputRange: [0, 1],
+         outputRange: [x, 0],
+     });
+     const pressHandler = () => {
+         this.close();
+         alert(text);
+     };
+     return (
+         <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
+             <RectButton
+                 style={[styles.rightAction, {backgroundColor: color}]}
+                 onPress={pressHandler}
+             >
+                 <Text style={styles.actionText}>{text}</Text>
+             </RectButton>
+         </Animated.View>
+     );
+ };
+
+ renderRightActions = progress => (
+     <View style={{
+         width: 192, flexDirection: 'row', marginTop: 10, height: 80
+     }}
+     >
+         {this.renderRightAction('More', '#C8C7CD', 192, progress)}
+         {this.renderRightAction('Flag', '#ffab00', 128, progress)}
+         {this.renderRightAction('More', '#dd2c00', 64, progress)}
+     </View>
+ );
+
+ updateRef = (ref) => {
+     this._swipeableRow = ref;
+ };
+
+ close = () => {
+     this._swipeableRow.close();
+ };
+
+ render() {
+     const {item, index} = this.props;
+     return (
+         <Swipeable
+             ref={this.updateRef}
+             friction={2}
+             leftThreshold={30}
+             rightThreshold={40}
+             renderLeftActions={this.renderLeftActions}
+             renderRightActions={this.renderRightActions}
+         >
+             <View style={styles.container}>
+                 <View style={item.done ? styles.iconContainerDone : styles.iconContainerInProgress}>
+                     <FontAwesome5
+                         color={colors.white}
+                         name="plus"
+                         size={20}
+                     />
+                 </View>
+                 <View style={common.flex1}>
+                     <View style={styles.textBlock}>
+                         <Text style={common.text}>{item.title}</Text>
+                         <Text style={common.text}> - </Text>
+                         <Text style={common.text}>Time</Text>
+                     </View>
+                     <View style={styles.dayBlock}>
+                         <View style={[styles.dayOval, { borderColor: item.mon ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.text}>M</Text>
+                         </View>
+                         <View style={[styles.dayOval, { borderColor: item.tue ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.text}>T</Text>
+                         </View>
+                         <View style={[styles.dayOval, { borderColor: item.wed ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.text}>W</Text>
+                         </View>
+                         <View style={[styles.dayOval, { borderColor: item.thu ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.text}>T</Text>
+                         </View>
+                         <View style={[styles.dayOval, { borderColor: item.fri ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.text}>F</Text>
+                         </View>
+                         <View style={[styles.dayOval, { borderColor: item.sat ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.text}>S</Text>
+                         </View>
+                         <View style={[styles.dayOval, { borderColor: item.sun ? colors.green : colors.backgroundGray}]}>
+                             <Text style={common.textSunday}>S</Text>
+                         </View>
+                     </View>
+                 </View>
+             </View>
+         </Swipeable>
+     );
+ }
+}
+
 
 const styles = StyleSheet.create({
     container: {
@@ -101,6 +186,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         flex: 1
+    },
+    leftAction: {
+        flex: 1,
+        backgroundColor: '#497AFC',
+        justifyContent: 'center',
+    },
+    actionText: {
+        color: 'white',
+        fontSize: 16,
+        backgroundColor: 'transparent',
+        padding: 10,
+    },
+    rightAction: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
     },
 
 });
