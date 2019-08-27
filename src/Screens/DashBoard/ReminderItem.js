@@ -17,19 +17,21 @@ import common from '../../styles/common';
 export default class ReminderItem extends Component {
     constructor(props) {
         super(props);
+        const {item, index} = this.props;
+        console.log('item', item);
         this.state = {
-
+            item,
+            index
         };
     }
 
- renderRightAction = (text, color, x, progress) => {
+ renderRightAction = (text, color, x, progress, index) => {
      const trans = progress.interpolate({
          inputRange: [0, 1],
          outputRange: [x, 0],
      });
-     const pressHandler = () => {
+     const pressHandler = (index) => {
          this.close();
-         alert(text);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
@@ -43,13 +45,13 @@ export default class ReminderItem extends Component {
      );
  };
 
- renderRightActions = progress => (
+ renderRightActions = (progress, index) => (
      <View style={{
          width: 192, flexDirection: 'row', marginTop: 10, height: 80
      }}
      >
-         {this.renderRightAction('Done', colors.green, 192, progress)}
-         {this.renderRightAction('Remove', colors.red, 128, progress)}
+         {this.renderRightAction('Done', colors.green, 192, progress, index)}
+         {this.renderRightAction('Remove', colors.red, 128, progress, index)}
      </View>
  );
 
@@ -62,7 +64,7 @@ export default class ReminderItem extends Component {
  };
 
  render() {
-     const {item, index} = this.props;
+     const {item, index} = this.state;
      return (
          <Swipeable
              ref={this.updateRef}
