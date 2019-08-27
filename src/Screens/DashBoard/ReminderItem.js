@@ -20,30 +20,7 @@ export default class ReminderItem extends Component {
         this.state = {
 
         };
-
-        console.log();
     }
-
-    renderLeftActions = (progress, dragX) => {
-        const trans = dragX.interpolate({
-            inputRange: [0, 50, 100, 101],
-            outputRange: [-20, 0, 0, 1],
-        });
-        return (
-            <RectButton style={styles.leftAction} onPress={this.close}>
-                <Animated.Text
-                    style={[
-                        styles.actionText,
-                        {
-                            transform: [{translateX: trans}],
-                        },
-                    ]}
-                >
-         Archive
-                </Animated.Text>
-            </RectButton>
-        );
-    };
 
  renderRightAction = (text, color, x, progress) => {
      const trans = progress.interpolate({
@@ -60,7 +37,7 @@ export default class ReminderItem extends Component {
                  style={[styles.rightAction, {backgroundColor: color}]}
                  onPress={pressHandler}
              >
-                 <Text style={styles.actionText}>{text}</Text>
+                 <Text style={common.headerText}>{text}</Text>
              </RectButton>
          </Animated.View>
      );
@@ -71,9 +48,8 @@ export default class ReminderItem extends Component {
          width: 192, flexDirection: 'row', marginTop: 10, height: 80
      }}
      >
-         {this.renderRightAction('More', '#C8C7CD', 192, progress)}
-         {this.renderRightAction('Flag', '#ffab00', 128, progress)}
-         {this.renderRightAction('More', '#dd2c00', 64, progress)}
+         {this.renderRightAction('Done', colors.green, 192, progress)}
+         {this.renderRightAction('Remove', colors.red, 128, progress)}
      </View>
  );
 
@@ -93,7 +69,6 @@ export default class ReminderItem extends Component {
              friction={2}
              leftThreshold={30}
              rightThreshold={40}
-             renderLeftActions={this.renderLeftActions}
              renderRightActions={this.renderRightActions}
          >
              <View style={styles.container}>
@@ -187,11 +162,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flex: 1
     },
-    leftAction: {
-        flex: 1,
-        backgroundColor: '#497AFC',
-        justifyContent: 'center',
-    },
     actionText: {
         color: 'white',
         fontSize: 16,
@@ -202,6 +172,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
+        borderRadius: 10
     },
 
 });
