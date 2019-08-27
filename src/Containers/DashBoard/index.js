@@ -6,128 +6,13 @@ import {
 
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import {connect} from 'react-redux';
 import DashBoardScreen from '../../Screens/DashBoard';
 import colors from '../../constants/colors';
 
-export default class DashBoard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data:
-                [{
-                    title: 'Reminder 1',
-                    time: '150',
-                    mon: true,
-                    tue: true,
-                    wed: true,
-                    thu: true,
-                    fri: true,
-                    sat: false,
-                    sun: false,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 2',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: false,
-                },
-                {
-                    title: 'Reminder 3',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: false,
-                    thu: false,
-                    fri: false,
-                    sat: false,
-                    sun: false,
-                    done: false,
-                },
-                {
-                    title: 'Reminder 4',
-                    time: '15',
-                    mon: false,
-                    tue: false,
-                    wed: false,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: false,
-                    done: false,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                }]
-
-        };
-    }
-
+class DashBoard extends Component {
     render() {
-        const {data} = this.state;
+        const {data} = this.props;
         console.log('data', data);
         return (
             <SafeAreaView style={styles.container}>
@@ -137,8 +22,15 @@ export default class DashBoard extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        data: state.dashBoardReducers.data
+    };
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1, backgroundColor: colors.green
     },
 });
+export default connect(mapStateToProps)(DashBoard);
