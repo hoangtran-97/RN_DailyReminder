@@ -9,10 +9,10 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {RectButton} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import colors from '../../constants/colors';
-import common from '../../styles/common';
-import styles from '../../styles/reminderItemStyle';
-import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
+import colors from '../../../constants/colors';
+import common from '../../../styles/common';
+import styles from '../../../styles/reminderItemStyle';
+import {removeItemAction} from '../../../Containers/DashBoard/Actions/index';
 
 class ReminderItem extends Component {
  timeout=ms => new Promise(resolve => setTimeout(resolve, ms))

@@ -8,7 +8,8 @@ import {
     FlatList
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import ReminderItem from './ReminderItem';
+import ReminderItem from './Components/ReminderItem';
+import AddReminderModal from './Components/AddReminderModal';
 import common from '../../styles/common';
 
 const DashBoard = ({
@@ -36,6 +37,7 @@ const DashBoard = ({
                 extraData={state}
             />
         </View>
+        <AddReminderModal />
     </Fragment>
 );
 

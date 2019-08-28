@@ -5,5 +5,7 @@ export default (colors = {
     textGray: '#717171',
     backgroundGray: '#eeeeee',
     red: '#fe879a',
-    yeallow: '#f9dc5c'
+    yellow: '#f9dc5c',
+    backgroundModalGray: '#ededed',
+    borderGray: '#d1d1d1'
 });
