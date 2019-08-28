@@ -17,8 +17,8 @@ import common from '../../styles/common';
 export default class ReminderItem extends Component {
     constructor(props) {
         super(props);
-        const {item, index} = this.props;
-        console.log('item', item);
+        const {item, index, onRemove} = this.props;
+        console.log('item', this.props);
         this.state = {
             item,
             index
@@ -32,6 +32,7 @@ export default class ReminderItem extends Component {
      });
      const pressHandler = (index) => {
          this.close();
+         onRemove(index);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>

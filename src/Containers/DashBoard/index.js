@@ -27,90 +27,6 @@ export default class DashBoard extends Component {
                     done: true,
                 },
                 {
-                    title: 'Reminder 2',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: false,
-                },
-                {
-                    title: 'Reminder 3',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: false,
-                    thu: false,
-                    fri: false,
-                    sat: false,
-                    sun: false,
-                    done: false,
-                },
-                {
-                    title: 'Reminder 4',
-                    time: '15',
-                    mon: false,
-                    tue: false,
-                    wed: false,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: false,
-                    done: false,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 5',
-                    time: '15',
-                    mon: true,
-                    tue: false,
-                    wed: true,
-                    thu: false,
-                    fri: true,
-                    sat: false,
-                    sun: true,
-                    done: true,
-                },
-                {
                     title: 'Reminder 5',
                     time: '15',
                     mon: true,
@@ -126,12 +42,19 @@ export default class DashBoard extends Component {
         };
     }
 
+    onRemove(index) {
+        const {data} = this.state;
+        currentState = data;
+        data.splice(index, 1);
+        this.setState({data: currentState});
+    }
+
     render() {
         const {data} = this.state;
         console.log('data', data);
         return (
             <SafeAreaView style={styles.container}>
-                <DashBoardScreen {...this.props} data={data}/>
+                <DashBoardScreen {...this.props} data={data} onRemove={() => this.onRemove}/>
             </SafeAreaView>
         );
     }
