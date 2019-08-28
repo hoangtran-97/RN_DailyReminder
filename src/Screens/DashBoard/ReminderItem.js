@@ -19,7 +19,8 @@ import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 class ReminderItem extends Component {
     constructor(props) {
         super(props);
-        const {item, index} = this.props;
+        const {item, index, onRemove} = this.props;
+
         this.state = {
             item,
             index
@@ -33,8 +34,7 @@ class ReminderItem extends Component {
      });
      const pressHandler = () => {
          this.close();
-         this.props.actions.removeItemAction(this.state.index, false);
-         console.log('REMOVE', this.props.data, this.props.reduxState);
+         this.props.onRemove(this.state.index);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
