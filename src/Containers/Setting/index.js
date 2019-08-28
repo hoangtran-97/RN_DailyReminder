@@ -19,7 +19,6 @@ export default class Setting extends Component {
 onPress =() => {
     changeState = this.state.clicked;
     this.setState({clicked: !changeState});
-    console.log(this.state);
 }
 
 render() {
