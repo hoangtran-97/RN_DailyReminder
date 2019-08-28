@@ -15,7 +15,7 @@ export default class DashBoard extends Component {
         this.state = {
             data:
                 [{
-                    title: 'Reminder 1',
+                    title: 'Reminder 0',
                     time: '150',
                     mon: true,
                     tue: true,
@@ -27,7 +27,7 @@ export default class DashBoard extends Component {
                     done: true,
                 },
                 {
-                    title: 'Reminder 5',
+                    title: 'Reminder 1',
                     time: '15',
                     mon: true,
                     tue: false,
@@ -36,25 +36,48 @@ export default class DashBoard extends Component {
                     fri: true,
                     sat: false,
                     sun: true,
+                    done: false,
+                },
+                {
+                    title: 'Reminder 2',
+                    time: '150',
+                    mon: true,
+                    tue: true,
+                    wed: true,
+                    thu: true,
+                    fri: true,
+                    sat: false,
+                    sun: false,
                     done: true,
+                },
+                {
+                    title: 'Reminder 3',
+                    time: '150',
+                    mon: true,
+                    tue: true,
+                    wed: true,
+                    thu: true,
+                    fri: true,
+                    sat: false,
+                    sun: false,
+                    done: false,
                 }]
 
         };
+        this.onRemove = this.onRemove.bind(this);
     }
 
     onRemove(index) {
-        const {data} = this.state;
-        currentState = data;
-        data.splice(index, 1);
+        currentState = this.state.data;
+        this.state.data.splice(index, 1);
         this.setState({data: currentState});
+        console.log('Remaining', this.state);
     }
 
     render() {
-        const {data} = this.state;
-        console.log('data', data);
         return (
             <SafeAreaView style={styles.container}>
-                <DashBoardScreen {...this.props} data={data} onRemove={() => this.onRemove}/>
+                <DashBoardScreen {...this.props} data={this.state.data} onRemove={this.onRemove} state={this.state}/>
             </SafeAreaView>
         );
     }

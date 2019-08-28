@@ -18,7 +18,7 @@ export default class ReminderItem extends Component {
     constructor(props) {
         super(props);
         const {item, index, onRemove} = this.props;
-        console.log('item', this.props);
+
         this.state = {
             item,
             index
@@ -30,9 +30,9 @@ export default class ReminderItem extends Component {
          inputRange: [0, 1],
          outputRange: [x, 0],
      });
-     const pressHandler = (index) => {
+     const pressHandler = () => {
          this.close();
-         onRemove(index);
+         this.props.onRemove(this.state.index);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
