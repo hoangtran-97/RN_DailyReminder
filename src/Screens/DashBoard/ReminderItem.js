@@ -17,14 +17,17 @@ import styles from '../../styles/reminderItemStyle';
 import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 
 class ReminderItem extends Component {
+    timeout=ms => new Promise(resolve => setTimeout(resolve, ms))
+
  renderRightActionRemove = (text, color, x, progress) => {
      const {item, index, onRemove} = this.props;
      const trans = progress.interpolate({
          inputRange: [0, 1],
          outputRange: [x, 0],
      });
-     const pressHandler = () => {
+     const pressHandler = async () => {
          this.close();
+         await this.timeout(600);
          this.props.onRemove(index);
      };
      return (
