@@ -6,7 +6,6 @@ import {
 
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import {connect} from 'react-redux';
 import DashBoardScreen from '../../Screens/DashBoard';
 import colors from '../../constants/colors';
 
@@ -38,30 +37,6 @@ class DashBoard extends Component {
                     sat: false,
                     sun: true,
                     done: false,
-                },
-                {
-                    title: 'Reminder 2',
-                    time: '150',
-                    mon: true,
-                    tue: true,
-                    wed: true,
-                    thu: true,
-                    fri: true,
-                    sat: false,
-                    sun: false,
-                    done: true,
-                },
-                {
-                    title: 'Reminder 3',
-                    time: '150',
-                    mon: true,
-                    tue: true,
-                    wed: true,
-                    thu: true,
-                    fri: true,
-                    sat: false,
-                    sun: false,
-                    done: false,
                 }]
 
         };
@@ -77,11 +52,11 @@ class DashBoard extends Component {
     }
 
     onDone = (index) => {
-        newState = this.state;
+        const {data} = this.state;
         newData = this.state.data;
         const clonedData = newData.slice();
         clonedData[index].done = !clonedData[index].done;
-        this.setState({...newState, data: clonedData});
+        this.setState({...data, data: clonedData});
     }
 
     render() {
@@ -93,17 +68,9 @@ class DashBoard extends Component {
         );
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        data: state.dashBoardReducers.data,
-        reduxState: state.dashBoardReducers
-    };
-}
-
 const styles = StyleSheet.create({
     container: {
         flex: 1, backgroundColor: colors.green
     },
 });
-export default connect(mapStateToProps)(DashBoard);
+export default DashBoard;
