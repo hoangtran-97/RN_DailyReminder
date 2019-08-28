@@ -7,7 +7,6 @@ import {
     TouchableOpacity, Animated
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {connect} from 'react-redux';
 import {RectButton} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { bindActionCreators } from 'redux';
@@ -120,18 +119,5 @@ class ReminderItem extends Component {
      );
  }
 }
-function mapStateToProps(state) {
-    return {
-        data: state.dashBoardReducers.data,
-        reduxState: state.dashBoardReducers
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({removeItemAction}, dispatch)
-    };
-}
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ReminderItem);
+
+export default ReminderItem;

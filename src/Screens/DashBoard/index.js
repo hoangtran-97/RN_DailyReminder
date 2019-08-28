@@ -30,7 +30,7 @@ const DashBoard = ({...props}) => (
             <FlatList
                 data={props.data}
                 renderItem={({item, index}) => (
-                    <ReminderItem item={item} index={index} onRemove={props.onRemove}> </ReminderItem>
+                    <ReminderItem item={item} index={index} onRemove={props.onRemove} />
                 )}
                 extraData={props.state}
             />

@@ -3,33 +3,7 @@ import {
 } from '../Actions/actionTypes';
 
 const initialState = {
-    data:
-        [{
-            title: 'Reminder 1',
-            time: '150',
-            mon: true,
-            tue: true,
-            wed: true,
-            thu: true,
-            fri: true,
-            sat: false,
-            sun: false,
-            done: true,
-        },
-        {
-            title: 'Reminder 2',
-            time: '150',
-            mon: true,
-            tue: true,
-            wed: true,
-            thu: true,
-            fri: true,
-            sat: false,
-            sun: false,
-            done: false,
-        }],
-    test: true
-
+    data: [],
 };
 const dashBoardReducers = (state = initialState, action) => {
     switch (action.type) {
@@ -38,11 +12,9 @@ const dashBoardReducers = (state = initialState, action) => {
             ...state,
         };
     case REMOVE_ITEM:
-        state.data.splice(action.index, 1);
-        return Object.assign({}, state, {
-            data: state.data,
-            test: action.test
-        });
+        return {
+            ...state,
+        };
     case COMPLETE_ITEM:
         return {
             ...state,

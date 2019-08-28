@@ -6,7 +6,6 @@ import {
 
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import {connect} from 'react-redux';
 import DashBoardScreen from '../../Screens/DashBoard';
 import colors from '../../constants/colors';
 
@@ -84,16 +83,9 @@ class DashBoard extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        data: state.dashBoardReducers.data,
-        reduxState: state.dashBoardReducers
-    };
-}
-
 const styles = StyleSheet.create({
     container: {
         flex: 1, backgroundColor: colors.green
     },
 });
-export default connect(mapStateToProps)(DashBoard);
+export default DashBoard;
