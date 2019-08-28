@@ -18,8 +18,9 @@ import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 class ReminderItem extends Component {
     constructor(props) {
         super(props);
-        const {item, index, onRemove} = this.props;
-
+        const {
+            item, index, onRemove, state
+        } = this.props;
         this.state = {
             item,
             index
@@ -67,7 +68,9 @@ class ReminderItem extends Component {
 
  render() {
      const {item, index} = this.state;
-     console.log(index);
+     console.log(`item with index of ${index}`);
+     console.log('ITEM', this.props.item);
+     console.log('STATE', this.state.item);
      return (
          <Swipeable
              ref={this.updateRef}

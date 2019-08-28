@@ -1,13 +1,19 @@
 import React, { Component, Fragment } from 'react';
+
 import {
     View,
     Text,
     StyleSheet,
-
+    StatusBar,
+    TouchableOpacity,
+    FlatList,
+    SafeAreaView
 } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import DashBoardScreen from '../../Screens/DashBoard';
 import colors from '../../constants/colors';
+import ReminderItem from '../../Screens/DashBoard/ReminderItem';
+import common from '../../styles/common';
 
 class DashBoard extends Component {
     constructor(props) {
@@ -71,13 +77,34 @@ class DashBoard extends Component {
         currentState = this.state.data;
         this.state.data.splice(index, 1);
         this.setState({data: currentState});
-        console.log('Remaining', this.state);
+        console.log('THIS.STATE.data', this.state.data);
     }
 
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <DashBoardScreen {...this.props} data={this.state.data} onRemove={this.onRemove} state={this.state}/>
+                <StatusBar barStyle="light-content" />
+                <View style={common.screenHeader}>
+                    <View style={common.headerBuffer}/>
+                    <Text style={common.headerText}>DateTime</Text>
+                    <TouchableOpacity style={common.headerBuffer}>
+                        <FontAwesome5
+                            color={colors.white}
+                            name="plus"
+                            size={20}
+
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={common.flatlistContainer}>
+                    <FlatList
+                        data={this.state.data}
+                        renderItem={({item, index}) => (
+                            <ReminderItem item={item} index={index} onRemove={this.onRemove} state={this.state} />
+                        )}
+                        extraData={this.state}
+                    />
+                </View>
             </SafeAreaView>
         );
     }
