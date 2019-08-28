@@ -70,9 +70,6 @@ export default class DashBoard extends Component {
     onRemove(index) {
         currentState = this.state.data;
         this.state.data.splice(index, 1);
-        Object.assign({}, state, {
-            data: state.data,
-        });
         this.setState({data: currentState});
         console.log('Remaining', this.state);
     }
