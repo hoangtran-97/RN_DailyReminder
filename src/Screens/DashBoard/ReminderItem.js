@@ -17,24 +17,15 @@ import styles from '../../styles/reminderItemStyle';
 import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 
 class ReminderItem extends Component {
-    constructor(props) {
-        super(props);
-        const {item, index, onRemove} = this.props;
-
-        this.state = {
-            item,
-            index
-        };
-    }
-
  renderRightAction = (text, color, x, progress) => {
+     const {item, index, onRemove} = this.props;
      const trans = progress.interpolate({
          inputRange: [0, 1],
          outputRange: [x, 0],
      });
      const pressHandler = () => {
          this.close();
-         this.props.onRemove(this.state.index);
+         this.props.onRemove(index);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
@@ -67,7 +58,7 @@ class ReminderItem extends Component {
  };
 
  render() {
-     const {item, index} = this.state;
+     const {item, index} = this.props;
      console.log(index);
      return (
          <Swipeable
