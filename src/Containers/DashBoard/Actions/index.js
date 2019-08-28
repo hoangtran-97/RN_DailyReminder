@@ -8,9 +8,10 @@ export const addItemAction = params => ({
     params,
 });
 
-export const removeItemAction = index => ({
+export const removeItemAction = (index, test) => ({
     type: REMOVE_ITEM,
     index,
+    test
 });
 
 export const completeItemAction = params => ({

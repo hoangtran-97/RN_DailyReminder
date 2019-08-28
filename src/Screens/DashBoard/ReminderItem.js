@@ -26,14 +26,15 @@ class ReminderItem extends Component {
         };
     }
 
- renderRightAction = (text, color, x, progress, index) => {
+ renderRightAction = (text, color, x, progress) => {
      const trans = progress.interpolate({
          inputRange: [0, 1],
          outputRange: [x, 0],
      });
-     const pressHandler = (index) => {
+     const pressHandler = () => {
          this.close();
-         this.props.actions.removeItemAction(index);
+         this.props.actions.removeItemAction(this.state.index, false);
+         console.log('REMOVE', this.props.data, this.props.reduxState);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
@@ -47,13 +48,13 @@ class ReminderItem extends Component {
      );
  };
 
- renderRightActions = (progress, index) => (
+ renderRightActions = progress => (
      <View style={{
          width: 192, flexDirection: 'row', marginTop: 10, height: 80
      }}
      >
-         {this.renderRightAction('Done', colors.green, 192, progress, index)}
-         {this.renderRightAction('Remove', colors.red, 128, progress, index)}
+         {this.renderRightAction('Done', colors.green, 192, progress)}
+         {this.renderRightAction('Remove', colors.red, 128, progress)}
      </View>
  );
 
@@ -67,6 +68,7 @@ class ReminderItem extends Component {
 
  render() {
      const {item, index} = this.state;
+     console.log(index);
      return (
          <Swipeable
              ref={this.updateRef}
@@ -118,13 +120,18 @@ class ReminderItem extends Component {
      );
  }
 }
-
+function mapStateToProps(state) {
+    return {
+        data: state.dashBoardReducers.data,
+        reduxState: state.dashBoardReducers
+    };
+}
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({removeItemAction}, dispatch)
     };
 }
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(ReminderItem);

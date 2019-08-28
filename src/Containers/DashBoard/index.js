@@ -13,18 +13,18 @@ import colors from '../../constants/colors';
 class DashBoard extends Component {
     constructor(props) {
         super(props);
-        const {data} = this.props;
-        this.state = {
-            data
-        };
+        // const {data} = this.props;
+        // this.state = {
+        //     data
+        // };
         console.log('REDUX', this.state);
     }
 
     render() {
-        const {data} = this.state;
+        const {data, reduxState} = this.props;
         return (
             <SafeAreaView style={styles.container}>
-                <DashBoardScreen {...this.props} data={data}/>
+                <DashBoardScreen {...this.props} data={data} reduxState={reduxState} />
             </SafeAreaView>
         );
     }
@@ -32,7 +32,8 @@ class DashBoard extends Component {
 
 function mapStateToProps(state) {
     return {
-        data: state.dashBoardReducers.data
+        data: state.dashBoardReducers.data,
+        reduxState: state.dashBoardReducers
     };
 }
 

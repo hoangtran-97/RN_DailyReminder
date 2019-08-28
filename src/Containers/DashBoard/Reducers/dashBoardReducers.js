@@ -27,7 +27,9 @@ const initialState = {
             sat: false,
             sun: false,
             done: false,
-        }]
+        }],
+    test: true
+
 };
 const dashBoardReducers = (state = initialState, action) => {
     switch (action.type) {
@@ -38,7 +40,8 @@ const dashBoardReducers = (state = initialState, action) => {
     case REMOVE_ITEM:
         state.data.splice(action.index, 1);
         return Object.assign({}, state, {
-            data: state.data
+            data: state.data,
+            test: action.test
         });
     case COMPLETE_ITEM:
         return {
