@@ -7,17 +7,15 @@ import {
     TouchableOpacity, Animated
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {connect} from 'react-redux';
 import {RectButton} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { bindActionCreators } from 'redux';
 import colors from '../../constants/colors';
 import common from '../../styles/common';
 import styles from '../../styles/reminderItemStyle';
 import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 
 class ReminderItem extends Component {
-    timeout=ms => new Promise(resolve => setTimeout(resolve, ms))
+ timeout=ms => new Promise(resolve => setTimeout(resolve, ms))
 
  renderRightActionRemove = (text, color, x, progress) => {
      const {item, index, onRemove} = this.props;
@@ -27,7 +25,7 @@ class ReminderItem extends Component {
      });
      const pressHandler = async () => {
          this.close();
-         await this.timeout(600);
+         await this.timeout(350);
          this.props.onRemove(index);
      };
      return (
@@ -43,13 +41,16 @@ class ReminderItem extends Component {
  };
 
  renderRightActionDone = (text, color, x, progress) => {
-     const {item, index, onRemove} = this.props;
+     const {
+         item, index, onRemove, onDone
+     } = this.props;
      const trans = progress.interpolate({
          inputRange: [0, 1],
          outputRange: [x, 0],
      });
      const pressHandler = () => {
          this.close();
+         this.props.onDone(index);
      };
      return (
          <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
@@ -83,7 +84,6 @@ class ReminderItem extends Component {
 
  render() {
      const {item, index} = this.props;
-     console.log(index);
      return (
          <Swipeable
              ref={this.updateRef}
@@ -135,18 +135,4 @@ class ReminderItem extends Component {
      );
  }
 }
-function mapStateToProps(state) {
-    return {
-        data: state.dashBoardReducers.data,
-        reduxState: state.dashBoardReducers
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({removeItemAction}, dispatch)
-    };
-}
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ReminderItem);
+export default ReminderItem;

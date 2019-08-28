@@ -11,7 +11,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import ReminderItem from './ReminderItem';
 import common from '../../styles/common';
 
-const DashBoard = ({data, onRemove, state}) => (
+const DashBoard = ({
+    data, onRemove, state, onDone
+}) => (
     <Fragment>
         <StatusBar barStyle="light-content" />
         <View style={common.screenHeader}>
@@ -22,7 +24,6 @@ const DashBoard = ({data, onRemove, state}) => (
                     color={colors.white}
                     name="plus"
                     size={20}
-
                 />
             </TouchableOpacity>
         </View>
@@ -30,7 +31,7 @@ const DashBoard = ({data, onRemove, state}) => (
             <FlatList
                 data={data}
                 renderItem={({item, index}) => (
-                    <ReminderItem item={item} index={index} onRemove={onRemove}> </ReminderItem>
+                    <ReminderItem item={item} index={index} onRemove={onRemove} onDone={onDone} />
                 )}
                 extraData={state}
             />

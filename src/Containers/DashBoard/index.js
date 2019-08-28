@@ -66,20 +66,29 @@ class DashBoard extends Component {
 
         };
         this.onRemove = this.onRemove.bind(this);
+        this.onDone = this.onDone.bind(this);
     }
 
-    onRemove(index) {
+    onRemove = (index) => {
         const {data} = this.state;
         currentState = data;
         currentState.splice(index, 1);
         this.setState({data: currentState});
     }
 
+    onDone = (index) => {
+        newState = this.state;
+        newData = this.state.data;
+        const clonedData = newData.slice();
+        clonedData[index].done = !clonedData[index].done;
+        this.setState({...newState, data: clonedData});
+    }
+
     render() {
         const {data} = this.state;
         return (
             <SafeAreaView style={styles.container}>
-                <DashBoardScreen {...this.props} data={data} onRemove={this.onRemove} state={this.state}/>
+                <DashBoardScreen {...this.props} data={data} onRemove={this.onRemove} state={this.state} onDone={this.onDone}/>
             </SafeAreaView>
         );
     }
