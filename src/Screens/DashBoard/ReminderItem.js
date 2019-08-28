@@ -17,7 +17,7 @@ import styles from '../../styles/reminderItemStyle';
 import {removeItemAction} from '../../Containers/DashBoard/Actions/index';
 
 class ReminderItem extends Component {
- renderRightAction = (text, color, x, progress) => {
+ renderRightActionRemove = (text, color, x, progress) => {
      const {item, index, onRemove} = this.props;
      const trans = progress.interpolate({
          inputRange: [0, 1],
@@ -39,13 +39,34 @@ class ReminderItem extends Component {
      );
  };
 
+ renderRightActionDone = (text, color, x, progress) => {
+     const {item, index, onRemove} = this.props;
+     const trans = progress.interpolate({
+         inputRange: [0, 1],
+         outputRange: [x, 0],
+     });
+     const pressHandler = () => {
+         this.close();
+     };
+     return (
+         <Animated.View style={{flex: 1, transform: [{translateX: trans}]}}>
+             <RectButton
+                 style={[styles.rightAction, {backgroundColor: color}]}
+                 onPress={pressHandler}
+             >
+                 <Text style={common.headerText}>{text}</Text>
+             </RectButton>
+         </Animated.View>
+     );
+ };
+
  renderRightActions = progress => (
      <View style={{
          width: 192, flexDirection: 'row', marginTop: 10, height: 80
      }}
      >
-         {this.renderRightAction('Done', colors.green, 192, progress)}
-         {this.renderRightAction('Remove', colors.red, 128, progress)}
+         {this.renderRightActionDone('Done', colors.green, 192, progress)}
+         {this.renderRightActionRemove('Remove', colors.red, 128, progress)}
      </View>
  );
 
