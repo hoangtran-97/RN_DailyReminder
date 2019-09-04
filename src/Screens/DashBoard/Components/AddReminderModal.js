@@ -29,53 +29,18 @@ const AddReminderModal = () => {
             transparent
             visible
         >
-            <SafeAreaView style={{
-                backgroundColor: 'rgba(52, 52, 52, 0.9)',
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-            >
-                <View style={{
-                    backgroundColor: colors.backgroundModalGray,
-                    width: '80%',
-                    height: '60%',
-                    borderRadius: 10,
-                    alignItems: 'center'
-                }}
-                >
-                    <View style={{height: 40, justifyContent: 'center'}}>
+            <SafeAreaView style={styles.SafeAreaView}>
+                <View style={styles.modal}>
+                    <View style={styles.headerContainer}>
                         <Text>New reminder</Text>
                     </View>
 
-                    <View style={{
-                        backgroundColor: colors.white,
-                        borderWidth: 2,
-                        borderColor: colors.borderGray,
-                        borderRadius: 10,
-                        width: '90%',
-                        height: '10%',
-                        justifyContent: 'center',
-                        paddingLeft: 10,
-                        marginBottom: 10
-                    }}
-                    >
+                    <View style={styles.inputContainer}>
                         <TextInput
                             placeholder="name"
                         />
                     </View>
-                    <View style={{
-                        backgroundColor: colors.white,
-                        borderWidth: 2,
-                        borderColor: colors.borderGray,
-                        borderRadius: 10,
-                        width: '90%',
-                        height: '10%',
-                        justifyContent: 'center',
-                        paddingLeft: 10,
-                        marginBottom: 10
-                    }}
-                    >
+                    <View style={styles.inputContainer}>
                         <TextInput
                             placeholder="Time"
                         />
@@ -163,6 +128,33 @@ const AddReminderModal = () => {
 export default AddReminderModal;
 
 const styles = StyleSheet.create({
+    modal: {
+        backgroundColor: colors.backgroundModalGray,
+        width: '80%',
+        height: '60%',
+        borderRadius: 10,
+        alignItems: 'center'
+    },
+    SafeAreaView: {
+        backgroundColor: 'rgba(52, 52, 52, 0.9)',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    headerContainer: {
+        height: 40, justifyContent: 'center'
+    },
+    inputContainer: {
+        backgroundColor: colors.white,
+        borderWidth: 2,
+        borderColor: colors.borderGray,
+        borderRadius: 10,
+        width: '90%',
+        height: '10%',
+        justifyContent: 'center',
+        paddingLeft: 10,
+        marginBottom: 10
+    },
     dayOval: {
         width: 30,
         height: 30,
