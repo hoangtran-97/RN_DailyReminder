@@ -15,7 +15,7 @@ import styles from '../../../styles/reminderItemStyle';
 import {removeItemAction} from '../../../Containers/DashBoard/Actions/index';
 
 class ReminderItem extends Component {
- timeout=ms => new Promise(resolve => setTimeout(resolve, ms))
+ timeout = ms => new Promise(resolve => setTimeout(resolve, ms))
 
  renderRightActionRemove = (text, color, x, progress) => {
      const {item, index, onRemove} = this.props;

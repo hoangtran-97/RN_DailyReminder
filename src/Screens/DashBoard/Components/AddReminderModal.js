@@ -27,7 +27,7 @@ const AddReminderModal = () => {
             style={styles.container}
             animationType="slide"
             transparent
-            visible
+            visible={false}
         >
             <SafeAreaView style={styles.SafeAreaView}>
                 <View style={styles.modal}>
