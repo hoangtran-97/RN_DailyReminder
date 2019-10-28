@@ -1,5 +1,6 @@
 # projectDailyReminder_RN
 ## My second RN project. Its a combined Reminder and Todo list to help with my daily productivity. 
+### Checkout at Develop to test
 The fuctionalities are: 
 - Make Reminder based on:
   - Name. 
@@ -24,3 +25,5 @@ The fuctionalities are:
 - [ ] Add to do modal
 - [ ] Save data to storage.
 ## Screenshots:
+Reminder screen
+<img src="Images/ReminderItem.png">
